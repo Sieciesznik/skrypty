@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="gameStyle.css">
+	</head>
+	<body>
+		<h2>Welcome in Klikacz</h2>
+		<div class="row">
+			<div class="column left">
+				<div class="tab">
+					<button id="realm_button" class="tablink" onclick="openTab(event, 'realm_container')">Realm</button>
+					<button id="tools_button" class="tablink" onclick="openTab(event, 'tools_container')">Tools</button>
+					<button id="buildings_button" class="tablink" onclick="openTab(event, 'buildings_container')">Buldings</button>
+				</div>
+				<div id="realm_container" class="tabcontent">
+					<h3>Forrest</h3>
+					<div id="branch_alert" class="res_alert" style='text-align: left;'></div>
+					<button id="branch_collection_button" type="button" class="button" onclick="branchResource.collectRes()">search for branches</button>
+					<div id="wood_alert" class="res_alert" style='text-align: left; max-width: 200px;'></div>
+					<button id="wood_collection_button" type="button" class="button" onclick="woodResource.collectRes()">""</button>
+					<button id="wood_upgrade_button" type="button" class="button" onclick="woodResource.upgradeRes()">""</button>
+					<br>
+				</div>
+				<div id="tools_container" class="tabcontent">
+					<h3>Chopping wood</h3>
+					<button id="make_stone_axe" type="button" class="button" onclick="makeTool('stone_axe')">Stone axe</button>
+					<br>
+				</div>
+				<div id="buildings_container" class="tabcontent">
+					<h3>Houses</h3>
+					<button id="build_hut_button" type="button" class="button" onclick="buildBuilding('hut')">Hut</button>
+					<button id="build_shed_button" type="button" class="button" onclick="buildBuilding('shed')">Shed</button>
+					<br>
+				</div>
+			</div>
+			<div class="column right">
+				<div id="resources_storage" class="storage">
+					<h4>Resources</h4>
+				</div>
+			</div>
+			<div class="column right">
+				<div id="tools_storage" class="storage">
+					<h4>Tools</h4>
+				</div>
+			</div>
+			<div class="column right">
+				<div id="buildings_storage" class="storage">
+					<h4>Buildings</h4>
+				</div>
+			</div>
+		</div>
+		<script src="JSGresources.js"></script>
+		<script src="JSGtools.js"></script>
+		<script src="JSGbuildings.js"></script>
+		<script src="JSgame.js"></script>
+	</body>
+</html> 

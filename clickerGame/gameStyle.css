@@ -1,0 +1,116 @@
+h2{
+	min-height: 100px;
+	padding: 10px;
+}
+
+body{
+	margin: 0;
+}
+
+#wood_container {
+	/* width: 20%; */
+	float: left;
+}
+
+.storage{
+	/*width: 20%;*/
+	max-width: 400px;
+	min-width: 150px;
+	min-height: 200px;
+	margin-left: 50px;
+	padding: 20px;
+	padding-top: 0px;
+	background-color: #eeeeee;
+	float: left;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left, .right {
+	width: 25%;
+	max-width: 400px;
+	min-width: 150px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #5CBF60;
+}
+
+.cell {
+	min-width: 100px;
+}
+
+.cell_right {
+	text-align: right;
+}
+
+.res_alert {
+	width: 100;
+	color: red;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: #f1f1f1;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    /* padding: 6px 12px; */
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
