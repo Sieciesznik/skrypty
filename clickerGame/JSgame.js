@@ -13,6 +13,22 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function displayPlayer() {
+	var container = document.getElementById("player_storage");
+	
+	if(typeof player_table !== "undefined"){
+		container.removeChild(document.getElementById("player_table"));
+	}
+	
+	try {
+		playTableCreate(container);
+	}
+	catch(err) {
+		console.log("table create fail");
+		console.log(err);
+	}
+}
+
 function displayWood() {
 	var container = document.getElementById("resources_storage");
 	
@@ -70,6 +86,50 @@ function displayTools(){
 	}
 
 }
+
+function playTableCreate(container) {
+	
+	var playArray = buildPlayArray();
+	// create elements <table> and a <tbody>
+	var tbl     = document.createElement("table");
+	tbl.setAttribute("id", "player_table");
+	var tblBody = document.createElement("tbody");
+
+	// cells creation
+	for (var j = 0; j < playArray.length; j++) {
+		// table row creation
+		var row = document.createElement("tr");
+
+		var cell = document.createElement("td");
+		var cellText = document.createTextNode(playArray[j].name);
+		cell.setAttribute("class", "cell");
+		cell.appendChild(cellText);
+		row.appendChild(cell);
+		
+		var cell = document.createElement("td");
+		var cellText = document.createTextNode(playArray[j].stored +"/"+ playArray[j].capacity);
+		cell.setAttribute("class", "cell cell_right");
+		cell.appendChild(cellText);
+		row.appendChild(cell);
+		
+	
+		tblBody.appendChild(row);
+	}
+
+	tbl.appendChild(tblBody);
+	container.appendChild(tbl);
+	tbl.setAttribute("border", "0");
+}
+
+function buildPlayArray(){
+
+	var arr = new Array();
+	arr.push({name: "Health", stored: playerInfo.hp, capacity: playerInfo.maxhp});
+	arr.push({name: "Warmth", stored: playerInfo.warmth, capacity: playerInfo.maxwarmth});
+	
+	return arr;
+}
+
 
 function resTableCreate(container) {
 	
@@ -160,6 +220,9 @@ function buildToolArray(){
 	if(stoneAxeTool.amount > 0){
 		arr.push({name: stoneAxeTool.name, amount: stoneAxeTool.amount});
 	}
+	if(stoneSwordTool.amount > 0){
+		arr.push({name: stoneSwordTool.name, amount: stoneSwordTool.amount});
+	}
 	return arr;
 }
 
@@ -222,8 +285,30 @@ document.getElementById("tools_storage").style.display = 'none';
 document.getElementById("buildings_storage").style.display = 'none';
 
 document.getElementById("wood_collection_button").style.display = 'none';
-document.getElementById("wood_upgrade_button").style.display = 'none';
+document.getElementById("burn_branches_button").style.display = 'none';
 document.getElementById('wood_alert').style.display = 'none';
 document.getElementById('wood_alert').innerHTML = '&nbsp;';
 document.getElementById('branch_alert').innerHTML = '&nbsp;';
+displayPlayer();
 displayWood();
+
+var person = prompt("Enter your name: ");
+var player_name = document.getElementById("player_name");
+player_name.innerHTML = "<h2>" + person + "</h2>" ;
+
+playerInfo.name = person;
+setInterval(playerInfo.coolDown, 1000);
+
+//var modalBeast = document.getElementById("modal_beast");
+$("#modal_beast").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+$('#modal_beast').modal('hide');
+
+setInterval(playerInfo.beastAttack, ((Math.random()*30) + 30) * 1000);
+//Math.random()
+
+
+

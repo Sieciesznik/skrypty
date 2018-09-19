@@ -18,6 +18,11 @@ var branchResource = {
 			firstTimeRes = 1;
 		}
 		
+		if(this.stored >= 5){
+			document.getElementById("burn_branches_button").style.display = 'block';
+		}
+		
+		
 		if(this.stored >= this.capacity){
 			document.getElementById('branch_alert').innerHTML = 'Branches storage capacity reached!';
 			return;
@@ -25,27 +30,13 @@ var branchResource = {
 		document.getElementById('branch_alert').innerHTML = '&nbsp;';
 		this.stored += this.income;
 		
-		if(Math.random() >= 0.9){
-			if(stoneAxeTool.amount > 0){
-				woodResource.addRes(2);
-			}
-			woodResource.addRes(1);
-		}
 		
-		if(Math.random() >= 0.92){
+		if(Math.random() >= 0.90){
 			stoneResource.addRes(1);
 		}
 		
 		if(this.stored > this.capacity){
 			this.stored = this.capacity;
-		}
-		
-		if(firstTimeHut == 0){
-			if(this.stored == 50){
-				var bTemp = document.getElementById("buildings_button");
-				bTemp.style.display = 'block';
-				firstTimeHut = 1;
-			}
 		}
 		
 		if(firstTimeAxe == 0){
@@ -55,8 +46,28 @@ var branchResource = {
 				firstTimeAxe = 1;
 			
 			}
+			else if(woodResource.stored >= 2 && stoneResource.stored >= 5){
+					var bTemp = document.getElementById("tools_button");
+					bTemp.style.display = 'block';
+					firstTimeAxe = 1;
+				
+			}
 		}
+		
 		displayWood();
+	},
+	
+	burnBranches: function(){
+		if(branchResource.stored >= 5){
+			branchResource.stored -= 5;
+			playerInfo.warmUp(10);
+			
+			if(branchResource.stored == 0){
+				document.getElementById("burn_branches_button").style.display = 'none';
+			}
+			displayWood();
+		}
+	
 	}
 };
 
@@ -80,7 +91,24 @@ var woodResource = {
 		if(this.stored + amount <= this.capacity){
 			this.stored += amount;
 		}else{
+			this.stored = this.capacity;
 			document.getElementById('branch_alert').innerHTML = 'Wood storage capacity reached!';
+		}
+		
+		if(firstTimeHut == 0){
+			if(this.stored == 20){
+				var bTemp = document.getElementById("buildings_button");
+				bTemp.style.display = 'block';
+				firstTimeHut = 1;
+			}
+		}
+		if(firstTimeAxe == 0){
+			if(this.stored >= 2 && stoneResource.stored >= 5){
+					var bTemp = document.getElementById("tools_button");
+					bTemp.style.display = 'block';
+					firstTimeAxe = 1;
+				
+			}
 		}
 	},
 	
@@ -133,7 +161,6 @@ var stoneResource = {
 	}
 	
 };
-
 
 
 

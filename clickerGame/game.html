@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="gameStyle.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
 	</head>
-	<body>
-		<h2>Welcome in Klikacz</h2>
+	<body style="margin-left:50px">
+		<div id="player_name"></div>
 		<div class="row">
 			<div class="column left">
 				<div class="tab">
@@ -15,22 +21,28 @@
 				<div id="realm_container" class="tabcontent">
 					<h3>Forrest</h3>
 					<div id="branch_alert" class="res_alert" style='text-align: left;'></div>
-					<button id="branch_collection_button" type="button" class="button" onclick="branchResource.collectRes()">search for branches</button>
-					<div id="wood_alert" class="res_alert" style='text-align: left; max-width: 200px;'></div>
-					<button id="wood_collection_button" type="button" class="button" onclick="woodResource.collectRes()">""</button>
-					<button id="wood_upgrade_button" type="button" class="button" onclick="woodResource.upgradeRes()">""</button>
+					<span title="click to collect resources"><button id="branch_collection_button" type="button" class="button" onclick="branchResource.collectRes()">search for branches</button></span>
+					<div id="wood_alert" class="res_alert" style='text-align: left; max-width: 200px;'></div>				
+					<span title="will consume 5 branches but you will get nice warmth in return"><button id="burn_branches_button" type="button" class="button" onclick="branchResource.burnBranches()">burn branches</button></span>
 					<br>
 				</div>
 				<div id="tools_container" class="tabcontent">
 					<h3>Chopping wood</h3>
-					<button id="make_stone_axe" type="button" class="button" onclick="makeTool('stone_axe')">Stone axe</button>
+					<span title="costs 10 branches, 2 stones"><button id="make_stone_axe" type="button" class="button" onclick="makeTool('stone_axe')">Stone axe</button></span>
+					<span title="costs 2 wood, 5 stones"><button id="make_stone_sword" type="button" class="button" onclick="makeTool('stone_sword')">Stone sword</button></span>
+					<span title="will consume one axe"><button id="wood_collection_button" type="button" class="button" onclick="stoneAxeTool.useAxe()">cut a tree</button></span>
 					<br>
 				</div>
 				<div id="buildings_container" class="tabcontent">
 					<h3>Houses</h3>
-					<button id="build_hut_button" type="button" class="button" onclick="buildBuilding('hut')">Hut</button>
-					<button id="build_shed_button" type="button" class="button" onclick="buildBuilding('shed')">Shed</button>
+					<span title="costs 25 wood"><button id="build_hut_button" type="button" class="button" onclick="buildBuilding('hut')">Hut</button></span>
+					<span title="costs 20 wood, expands storage capacity"><button id="build_shed_button" type="button" class="button" onclick="buildBuilding('shed')">Shed</button></span>
 					<br>
+				</div>
+			</div>
+			<div class="column right">
+				<div id="player_storage" class="storage">
+					<h4>Player Stats</h4>
 				</div>
 			</div>
 			<div class="column right">
@@ -49,6 +61,30 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="container">
+			<!-- Modal -->
+			<div class="modal fade" id="modal_beast" role="dialog">
+				<div class="modal-dialog">
+				
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body">
+							<p>Some text in the modal.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				  
+				</div>
+			</div>
+		</div>
+		<script src="JSGplayer.js"></script>
 		<script src="JSGresources.js"></script>
 		<script src="JSGtools.js"></script>
 		<script src="JSGbuildings.js"></script>

@@ -4,7 +4,7 @@ var hut = {
 	
 	name: 'Hut',
 	amount: 0,
-	cost: 50
+	cost: 25
 	
 }
 
@@ -12,20 +12,20 @@ var shed = {
 	
 	name: 'Shed',
 	amount: 0,
-	cost: 50
+	cost: 20
 	
 }
 
 function buildBuilding(buildingName){
 	if(buildingName == 'hut'){
 		console.log(buildingName);
-		if(branchResource.stored >= hut.cost){
+		if(woodResource.stored >= hut.cost){
 			if(firstTimeBuilding == 0){
 				document.getElementById("buildings_storage").style.display = 'block';
 				firstTimeBuilding = 1;
 			}
 			
-			branchResource.stored -= hut.cost;
+			woodResource.stored -= hut.cost;
 			hut.amount++;
 			displayWood();
 			displayBuilds();
@@ -33,13 +33,13 @@ function buildBuilding(buildingName){
 	}
 	if(buildingName == 'shed'){
 		console.log(buildingName);
-		if(branchResource.stored >= shed.cost){
+		if(woodResource.stored >= shed.cost){
 			if(firstTimeBuilding == 0){
 				document.getElementById("buildings_storage").style.display = 'block';
 				firstTimeBuilding = 1;
 			}
 			
-			branchResource.stored -= shed.cost;
+			woodResource.stored -= shed.cost;
 			shed.amount++;
 			branchResource.capacity += 10;
 			woodResource.capacity += 5;
