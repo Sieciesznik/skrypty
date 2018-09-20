@@ -70,14 +70,19 @@
 				<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Modal Header</h4>
+							
+							<h4 class="modal-title">Wild beast attacks!</h4>
 						</div>
 						<div class="modal-body">
-							<p>Some text in the modal.</p>
+							<p>Out of nowhere you were attacked by wild beast! What will you do?</p>
 						</div>
+						<div id="beast_stats"></div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<span title="deals 2 dmg and beast attacks you"><button type="button" id="use_branch" class="btn btn-default" onclick="branchResource.useBranch()">Use branch</button></span>
+							<span title="kill the beast in a vicious duel"><button type="button" id="use_sword" class="btn btn-default" onclick="stoneSwordTool.useSword()">Use sword</button></span>
+							<span title="deals 4 dmg from safe distance"><button type="button" id="throw_rock" class="btn btn-default" onclick="stoneResource.throwRock()">Throw rock</button></span>
+							<span title="fire protects but it costs a lot of heat"><button type="button" id="use_brand" class="btn btn-default" onclick="playerInfo.useBrand()">Use burning brand</button></span>
+							<span title="you will loose all your resources"><button type="button" id="run" class="btn btn-default" data-dismiss="modal" onclick="playerInfo.run()">Run</button></span>
 						</div>
 					</div>
 				  

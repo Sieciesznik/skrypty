@@ -126,6 +126,9 @@ function buildPlayArray(){
 	var arr = new Array();
 	arr.push({name: "Health", stored: playerInfo.hp, capacity: playerInfo.maxhp});
 	arr.push({name: "Warmth", stored: playerInfo.warmth, capacity: playerInfo.maxwarmth});
+	if(playerInfo.meat > 0){
+		arr.push({name: "Meat", stored: playerInfo.meat, capacity: 20});
+	}
 	
 	return arr;
 }
@@ -289,10 +292,14 @@ document.getElementById("burn_branches_button").style.display = 'none';
 document.getElementById('wood_alert').style.display = 'none';
 document.getElementById('wood_alert').innerHTML = '&nbsp;';
 document.getElementById('branch_alert').innerHTML = '&nbsp;';
+
+document.getElementById("use_branch").style.display = 'none';
+document.getElementById("use_sword").style.display = 'none';
+document.getElementById("throw_rock").style.display = 'none';
 displayPlayer();
 displayWood();
 
-var person = prompt("Enter your name: ");
+var person = prompt("And here you are, standing alone in the middle of the forrest.\nYou can see only endless sea of trees and bonfire burning nearby.\nWhat is your name?");
 var player_name = document.getElementById("player_name");
 player_name.innerHTML = "<h2>" + person + "</h2>" ;
 

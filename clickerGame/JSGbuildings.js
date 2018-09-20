@@ -27,6 +27,7 @@ function buildBuilding(buildingName){
 			
 			woodResource.stored -= hut.cost;
 			hut.amount++;
+			alert("Now you are safe. This cozy shelter protects you from wild animals and keeps you warm.\nYou won!")
 			displayWood();
 			displayBuilds();
 		}

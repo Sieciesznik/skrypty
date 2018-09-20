@@ -13,6 +13,8 @@ var branchResource = {
 	upgradeMax: 10,
 	
 	collectRes: function(){
+		document.getElementById("use_branch").style.display = 'inline';
+		
 		if(firstTimeRes == 0){
 			document.getElementById("resources_storage").style.display = 'block';
 			firstTimeRes = 1;
@@ -33,6 +35,7 @@ var branchResource = {
 		
 		if(Math.random() >= 0.90){
 			stoneResource.addRes(1);
+			document.getElementById("throw_rock").style.display = 'inline';
 		}
 		
 		if(this.stored > this.capacity){
@@ -59,7 +62,7 @@ var branchResource = {
 	
 	burnBranches: function(){
 		if(branchResource.stored >= 5){
-			branchResource.stored -= 5;
+			branchResource.subtractBranches(5);
 			playerInfo.warmUp(10);
 			
 			if(branchResource.stored == 0){
@@ -68,6 +71,20 @@ var branchResource = {
 			displayWood();
 		}
 	
+	},
+	
+	useBranch: function(){
+		this.subtractBranches(1);
+		playerInfo.dealDamage(beastInfo.attack);
+		beastInfo.dealDamage(2);
+		displayWood();
+	},
+	
+	subtractBranches: function(brnchs){
+		this.stored -= brnchs;
+		if(this.stored == 0){
+			document.getElementById("use_branch").style.display = 'none';
+		}
 	}
 };
 
@@ -157,6 +174,19 @@ var stoneResource = {
 			displayWood();
 		}else{
 			document.getElementById('wood_alert').innerHTML = 'Not enough wood!';
+		}
+	},
+	
+	throwRock: function(){
+		this.subtractStones(1);
+		beastInfo.dealDamage(3);
+		displayWood();
+	},
+	
+	subtractStones: function(stns){
+		this.stored -= stns;
+		if(this.stored == 0){
+			document.getElementById("throw_rock").style.display = 'none';
 		}
 	}
 	

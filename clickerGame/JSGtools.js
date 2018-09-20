@@ -31,22 +31,13 @@ var stoneSwordTool = {
 	amount: 0,
 	
 	useSword: function(){
-		
-		if(woodResource.stored + 5 > woodResource.capacity){
-			document.getElementById('branch_alert').innerHTML = 'Wood storage capacity reached!';
-			return;
+		this.amount--;
+		beastInfo.dealDamage(20);
+		playerInfo.dealDamage(beastInfo.attack);
+		if(this.amount == 0){
+			document.getElementById("use_sword").style.display = 'none';
 		}
-		
-		if(stoneAxeTool.amount > 0){
-			--stoneAxeTool.amount;
-			woodResource.addRes(5);
-			displayWood();
-			displayTools();
-			if(stoneAxeTool.amount == 0){
-				
-				document.getElementById("wood_collection_button").style.display = 'none';
-			}
-		}
+		displayTools();
 	}
 };
 
@@ -59,8 +50,8 @@ function makeTool(toolName){
 				firstTimeTool = 1;
 			}
 			document.getElementById("wood_collection_button").style.display = 'block';
-			branchResource.stored -= 10;
-			stoneResource.stored -= 2;
+			branchResource.subtractBranches(10);
+			stoneResource.subtractStones(2);
 			stoneAxeTool.amount++;
 			displayWood();
 			displayTools();
@@ -72,8 +63,9 @@ function makeTool(toolName){
 				document.getElementById("tools_storage").style.display = 'block';
 				firstTimeTool = 1;
 			}
+			document.getElementById("use_sword").style.display = 'inline';
 			woodResource.stored -= 2;
-			stoneResource.stored -= 5;
+			stoneResource.subtractStones(5);
 			stoneSwordTool.amount++;
 			displayWood();
 			displayTools();
